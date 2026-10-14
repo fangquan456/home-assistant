@@ -1,0 +1,16 @@
+name: gendome-ha-dev
+
+services:
+  homeassistant:
+    container_name: gendome-home-assistant-dev
+    image: ghcr.io/home-assistant/home-assistant:stable
+    restart: unless-stopped
+    ports:
+      - "8123:8123"
+    volumes:
+      - ./config-dev:/config
+      - ./custom_components/gendome:/config/custom_components/gendome:ro
+    environment:
+      TZ: Asia/Shanghai
+      GENDOME_ENV: dev
+      GENDOME_OAUTH_MODE: ${GENDOME_OAUTH_MODE:-public_pkce}
