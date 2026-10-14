@@ -17,10 +17,10 @@ from custom_components.gendome.const import (
 )
 
 
-def test_unset_environment_defaults_to_production(monkeypatch) -> None:
+def test_unset_environment_defaults_to_development(monkeypatch) -> None:
     monkeypatch.delenv("GENDOME_ENV", raising=False)
 
-    assert resolve_environment() == ENVIRONMENT_PROD
+    assert resolve_environment() == ENVIRONMENT_DEV
 
 
 def test_development_uses_development_api() -> None:

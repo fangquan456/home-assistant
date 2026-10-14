@@ -1,5 +1,9 @@
 # Gendome for Home Assistant
 
+> Development test repository: HACS installations from this repository connect
+> to the Gendome development API and OAuth services by default. Do not use this
+> repository for production accounts or devices.
+
 Gendome is a cloud-polling Home Assistant custom integration for Gendome Home
 3000 and Go series energy devices. Version 1.0 implements OAuth2 account
 linking, device discovery, coordinated state polling, safe device controls,
@@ -70,7 +74,7 @@ For the initial V1.0 rollout, install the integration as a HACS custom
 repository:
 
 1. In HACS, open **Integrations**, then **Custom repositories**.
-2. Add `https://github.com/gendome/home-assistant.git` with category
+2. Add `https://github.com/fangquan456/home-assistant.git` with category
    **Integration**.
 3. Find and install **Gendome**, then restart Home Assistant.
 4. Open **Settings → Devices & services → Add integration → Gendome** and

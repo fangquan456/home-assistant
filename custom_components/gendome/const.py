@@ -28,6 +28,7 @@ ENVIRONMENT_VARIABLE: Final = "GENDOME_ENV"
 ENVIRONMENT_DEV: Final = "dev"
 ENVIRONMENT_PROD: Final = "prod"
 SUPPORTED_ENVIRONMENTS: Final = frozenset({ENVIRONMENT_DEV, ENVIRONMENT_PROD})
+DEFAULT_ENVIRONMENT: Final = ENVIRONMENT_DEV
 
 OAUTH_MODE_VARIABLE: Final = "GENDOME_OAUTH_MODE"
 OAUTH_MODE_PUBLIC_PKCE: Final = "public_pkce"
@@ -50,9 +51,9 @@ ENVIRONMENT_OAUTH_BASE_URLS: Final = {
 def resolve_environment(value: str | None = None) -> str:
     """解析并校验运行环境。
 
-    源码默认使用生产环境，避免 HACS 安装意外连接到测试云服务。
+    个人测试仓库默认使用开发环境，便于通过 HACS 验证 dev 云服务。
     """
-    environment = (value or os.getenv(ENVIRONMENT_VARIABLE, ENVIRONMENT_PROD))
+    environment = (value or os.getenv(ENVIRONMENT_VARIABLE, DEFAULT_ENVIRONMENT))
     environment = environment.strip().lower()
     if environment not in SUPPORTED_ENVIRONMENTS:
         supported = ", ".join(sorted(SUPPORTED_ENVIRONMENTS))

@@ -70,7 +70,7 @@ device:read statistics:read device:control:switch device:control:setting schedul
 
 ## Home Assistant 端实现
 
-生产默认值如下：
+正式发布仓库的生产默认值如下：
 
 ```text
 GENDOME_ENV=prod
@@ -79,6 +79,10 @@ GENDOME_OAUTH_MODE=public_pkce
 
 两个变量都无需由普通用户设置。未设置时自动使用生产环境和公共 PKCE 客户端。
 每次配置流使用独立的 PKCE verifier，避免并发授权相互覆盖。
+
+个人测试仓库 `fangquan456/home-assistant` 是例外：未设置 `GENDOME_ENV`
+时默认使用 `dev`，用于通过 HACS 自定义仓库验证开发环境。该默认值不得同步到
+正式发布仓库 `gendome/home-assistant`。
 
 `application_credentials.py` 继续保留，仅供开发环境兼容旧的 confidential client。
 开发者需要回退时显式设置：

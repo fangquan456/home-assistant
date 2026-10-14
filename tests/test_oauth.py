@@ -165,7 +165,7 @@ async def test_normal_user_flow_returns_direct_browser_redirect(monkeypatch) -> 
 
     assert result["type"] is FlowResultType.EXTERNAL_STEP
     assert result["step_id"] == "auth"
-    assert urlsplit(result["url"]).netloc == "oauth.gendome.cloud"
+    assert urlsplit(result["url"]).netloc == "dev-oauth.gendome.cloud"
     assert parse_qs(urlsplit(result["url"]).query)["client_id"] == [
         PUBLIC_OAUTH_CLIENT_ID
     ]

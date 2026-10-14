@@ -1,8 +1,10 @@
 # Development and production environments
 
 Gendome has two strictly isolated runtime environments. The integration reads
-`GENDOME_ENV` when Home Assistant starts. An unset value defaults to `prod` so
-GitHub/HACS releases cannot accidentally use the development cloud.
+`GENDOME_ENV` when Home Assistant starts. In this personal test repository, an
+unset value defaults to `dev` so HACS custom-repository installs connect to the
+development cloud. The official release repository must continue to default to
+`prod`.
 
 | Environment | API base URL | OAuth base URL | OAuth client | HA config | URL |
 | --- | --- | --- | --- | --- | --- |
@@ -73,10 +75,10 @@ Stop production preflight without affecting dev:
 docker compose -f docker-compose.prod.yml down
 ```
 
-## Release guard
+## Test repository guard
 
-Before tagging a release, run without `GENDOME_ENV` or `GENDOME_OAUTH_MODE` and
-verify the defaults:
+Before HACS development testing, run without `GENDOME_ENV` or
+`GENDOME_OAUTH_MODE` and verify the test-repository defaults:
 
 ```powershell
 python -c "from custom_components.gendome.const import DEFAULT_API_BASE_URL, ENVIRONMENT, OAUTH_MODE; print(ENVIRONMENT, OAUTH_MODE, DEFAULT_API_BASE_URL)"
@@ -85,9 +87,9 @@ python -c "from custom_components.gendome.const import DEFAULT_API_BASE_URL, ENV
 Expected output:
 
 ```text
-prod public_pkce https://api.gendome.cloud
+dev public_pkce https://dev-api.gendome.cloud
 ```
 
 Run Ruff, tests, compilation, dev acceptance, production preflight, and the
-release checklist. GitHub/HACS does not use either Compose file, so the unset
-source-code default remains production.
+release checklist. GitHub/HACS does not use either Compose file, so this test
+repository intentionally keeps the unset source-code default on development.

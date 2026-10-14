@@ -45,8 +45,8 @@
 
 ## Distribution
 
-- [ ] Verify an installation without `GENDOME_ENV` defaults to
-  `https://api.gendome.cloud`.
+- [ ] Verify this test-repository installation without `GENDOME_ENV` defaults
+  to `https://dev-api.gendome.cloud`.
 - [ ] Verify an installation without `GENDOME_OAUTH_MODE` defaults to
   `public_pkce`.
 - [x] Confirm GitHub repository, documentation, and issue tracker values use
