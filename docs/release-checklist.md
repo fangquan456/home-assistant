@@ -1,4 +1,4 @@
-# V1.0 release and acceptance checklist
+# Release and acceptance checklist
 
 ## HACS browser OAuth, backend, and OAuth
 
@@ -54,4 +54,4 @@
 - [x] Set the public code owner to `@fangquan456`.
 - [ ] Run tests, Ruff, JSON validation, Home Assistant Docker, and HAOS tests.
 - [ ] Validate HACS custom-repository install and upgrade.
-- [ ] Publish `v1.0.0` with release notes and complete a limited user rollout.
+- [ ] Publish the release with release notes and complete a limited user rollout.

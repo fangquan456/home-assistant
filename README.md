@@ -4,13 +4,10 @@
 > to the Gendome development API and OAuth services by default. Do not use this
 > repository for production accounts or devices.
 
-Gendome is a cloud-polling Home Assistant custom integration for Gendome Home
-3000 and Go series energy devices. Version 1.0 implements OAuth2 account
-linking, device discovery, coordinated state polling, safe device controls,
-scheduled-charging enable/disable, and privacy-safe diagnostics.
-
-The V1.0 launch path intentionally uses HACS for distribution and a standard
-browser-based OAuth2 Authorization Code + PKCE flow for account linking.
+Connect supported Gendome Home 3000 and Go series energy devices to Home
+Assistant. Monitor device status and power, control supported functions, and
+use your devices in automations. The integration connects to Gendome cloud
+services and uses browser-based OAuth2 account linking.
 
 ## Supported entities
 
@@ -28,12 +25,12 @@ Entities use `mac + entity_key` as their stable unique ID. Controls are not
 optimistic: the integration waits for the Java OpenAPI command result and then
 refreshes the coordinated device state.
 
-## V1.0 user journey
+## Connecting your account
 
-1. Install **Gendome** from HACS and restart Home Assistant.
+1. Install **Gendome** using the HACS instructions below and restart Home Assistant.
 2. Open **Settings → Devices & services → Add integration → Gendome**.
 3. Home Assistant opens the Gendome authorization website in the browser.
-4. Sign in with the Gendome account, review the requested permissions, and
+4. Sign in with your Gendome App account, review the requested permissions, and
    select **Allow**.
 5. Gendome redirects the browser back to Home Assistant. The integration then
    discovers the devices already bound to that Gendome account.
@@ -42,15 +39,15 @@ refreshes the coordinated device state.
 
 - Home Assistant 2024.8 or newer;
 - HACS installed and working;
-- a Gendome account with at least one supported device already bound;
+- a Gendome App account with at least one supported device already bound;
 - internet access from the browser and Home Assistant server to Gendome cloud
   services.
 
 To use the **Scheduled charging** switch, first create a charging plan in the
-Gendome app. V1.0 can read and enable/disable an existing plan, but it cannot
-create or edit the plan in Home Assistant.
+Gendome app. The integration can read and enable or disable an existing plan,
+but cannot create or edit the plan in Home Assistant.
 
-## Production backend prerequisites
+## Backend prerequisites
 
 The Gendome backend must provide the endpoints documented in
 [`docs/openapi-contract.md`](docs/openapi-contract.md), and a public OAuth client
@@ -62,7 +59,7 @@ with:
 - the fixed `https://my.home-assistant.io/redirect/oauth` redirect URI;
 - read scopes `device:read`, `statistics:read`, and
   `scheduled_charging:read`;
-- optional control scopes `device:control:switch`,
+- control scopes `device:control:switch`,
   `device:control:setting`, and `scheduled_charging:write`.
 
 The public client ID is safe to ship in the integration. It must never have a
@@ -70,8 +67,7 @@ client secret because every HACS installation can inspect the source code.
 
 ## Installation with HACS
 
-For the initial V1.0 rollout, install the integration as a HACS custom
-repository:
+Add the test repository to HACS and download the integration:
 
 1. In HACS, open **Integrations**, then **Custom repositories**.
 2. Add `https://github.com/fangquan456/home-assistant.git` with category
@@ -80,9 +76,9 @@ repository:
 4. Open **Settings → Devices & services → Add integration → Gendome** and
    complete the browser authorization flow.
 
-After the repository is accepted into the default HACS catalog, users can
-search for **Gendome** directly in HACS and the custom-repository steps are no
-longer needed.
+This test repository is intended for development and is installed as a custom
+repository. For production use, see the official
+[Gendome integration repository](https://github.com/gendome/home-assistant).
 
 Adding the integration immediately opens the Gendome website. Sign in, review
 the requested access, and select **Allow**. Gendome then returns to Home
@@ -118,7 +114,7 @@ Download diagnostics from the Gendome integration page. Tokens, email, IP,
 serial number, MAC, and device IDs are redacted or masked. See
 [`docs/troubleshooting.md`](docs/troubleshooting.md) for common failures.
 
-## Known V1.0 limitations
+## Current limitations
 
 - The integration is distributed through HACS and is not bundled with Home
   Assistant Core.
